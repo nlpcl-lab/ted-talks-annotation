@@ -14,7 +14,7 @@ An annotation tool used in the paper to annotate the tension development.
 
 ### Setup 
 
-1. To connect the Mongodb, make your own config.py: `cp config.smaple.py config.py`
+1. To connect the Mongodb, make your own config.py: `cp config.sample.py config.py`
     - If the default setting of the Mongodb has not been changed, you don't need to modify the config.py
     
 2. Install python requirements: `pip install -r requirements.txt`
