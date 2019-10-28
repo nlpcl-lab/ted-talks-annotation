@@ -2,7 +2,6 @@ import datetime
 from flask_mongoengine import MongoEngine
 import uuid
 import hashlib
-import logging
 
 db = MongoEngine()
 
@@ -12,7 +11,6 @@ class Doc(db.Document):
     source = db.StringField(default='')
     created_at = db.DateTimeField(default=datetime.datetime.now)
     type = db.StringField(default='v1')
-    file_url = db.StringField(default='')
 
     def dump(self):
         return {
@@ -25,16 +23,12 @@ class Doc(db.Document):
 class Sent(db.Document):
     doc = db.ReferenceField(Doc)
     index = db.IntField()
-    text = db.StringField()
-    meta_text = db.StringField()
+    text = db.StringField(default='')
+    meta_text = db.StringField(default='')
     created_at = db.DateTimeField(default=datetime.datetime.now)
 
     start_ts = db.IntField()
     end_ts = db.IntField()
-
-    sound_sum = db.IntField()
-    sound_maximum = db.IntField()
-    sound_minimum = db.IntField()
 
     meta = {
         'indexes': [
@@ -79,11 +73,6 @@ class User(db.Document):
 
 class Annotation(db.Document):
     TYPE_TENSION = 'tension'
-    TYPE_TENSION_V2 = 'tension_v2'
-    TYPE_TENSION_V3 = 'tension_v3'
-    TYPE_TENSION_V4 = 'tension_v4'
-    TYPE_TENSION_V4_FAIL = 'tension_v4_fail'
-    TYPE_ROLE = 'role'
 
     doc = db.ReferenceField(Doc)
     sent = db.ReferenceField(Sent)

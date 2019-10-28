@@ -1,5 +1,5 @@
 class Config:
-    SECRET_KEY = 'YOUR_SECRET_KEY'
+    SECRET_KEY = 'YOUR_SECRET_KEY'  # for annotation tool
     MONGODB_SETTINGS = {
         'host': '127.0.0.1',
         'db': 'YOUR_DB_NAME',
