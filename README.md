@@ -9,7 +9,6 @@ Code and data for a paper "Computer Assisted Annotation of Tension Development i
 ### Pre-requisites
 
 1. Install and run [Mongodb](https://www.mongodb.com/).
-    - It is easy to install and run.
 
 ### Setup 
 
