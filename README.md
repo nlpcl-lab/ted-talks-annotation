@@ -4,6 +4,8 @@ Code and data for a paper "Computer Assisted Annotation of Tension Development i
 
 ## Annotation Tool
 
+An annotation tool used in the paper to annotate the tension development.
+
 <img src="https://github.com/nlpcl-lab/ted-talks-annotation/raw/master/annotation/static/img/interface.jpg" width="600px">
 
 ### Pre-requisites
