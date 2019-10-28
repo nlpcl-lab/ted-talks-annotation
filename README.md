@@ -24,7 +24,7 @@ An annotation tool used in the paper to annotate the tension development.
 4. Run the web-based annotation tool: `export PYTHONPATH=.;python annotation/app.py`
 
 5. Annotate! 😵
-    - We provided the annotators with [this guideline document](https://github.com/nlpcl-lab/ted-talks-annotation/blob/master/guideline_for_annotator.pdf) when using [Amazon Mechanical Turk](https://www.mturk.com).
+    - We provided the annotators with [this guideline document](https://github.com/nlpcl-lab/ted-talks-annotation/blob/master/guideline_for_annotators.pdf) when using [Amazon Mechanical Turk](https://www.mturk.com).
 
     
 
