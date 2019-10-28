@@ -1,9 +1,9 @@
 class Config:
-    SECRET_KEY = 'YOUR_SECRET_KEY'  # for annotation tool
+    SECRET_KEY = 'ted-talks-annotation'
     MONGODB_SETTINGS = {
         'host': '127.0.0.1',
-        'db': 'YOUR_DB_NAME',
+        'db': 'ted_talks',
         'port': 27017,
-        'username': 'YOUR_DB_USERNAME',
-        'password': 'YOUR_DB_PASSWORD',
+        # 'username': 'YOUR_DB_USERNAME',
+        # 'password': 'YOUR_DB_PASSWORD',
     }

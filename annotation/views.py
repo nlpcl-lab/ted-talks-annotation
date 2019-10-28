@@ -89,3 +89,14 @@ def api_annotate_tension(sent_id):
         'label_total': Annotation.objects.filter(doc=sent.doc, user=g.user, type=type).count(),
         'sent_total': Sent.objects.filter(doc=sent.doc).count(),
     })
+
+
+@is_user
+def api_annotate_tension_stat(doc_id):
+    doc = Doc.objects.get(id=doc_id)
+    type = Annotation.TYPE_TENSION_V3
+
+    return json.dumps({
+        'label_total': Annotation.objects.filter(doc=doc, user=g.user, type=type).count(),
+        'sent_total': Sent.objects.filter(doc=doc).count(),
+    })

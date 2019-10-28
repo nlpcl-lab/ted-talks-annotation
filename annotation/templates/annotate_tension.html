@@ -494,7 +494,7 @@
 
   function update_label(sent_id, label) {
     $.ajax({
-      url: '/api/annotate/sent/' + sent_id + '/tension_v3',
+      url: '/api/annotate/sent/' + sent_id + '/tension',
       dataType: 'json',
       contentType: 'application/json',
       type: 'POST',
@@ -526,7 +526,7 @@
   function get_annotation_stat() {
     let doc_id = $('#doc_id').val();
     $.ajax({
-      url: '/api/annotate/doc/' + doc_id + '/tension_v3/stat',
+      url: '/api/annotate/doc/' + doc_id + '/tension/stat',
       dataType: 'json',
       type: 'GET',
     }).done(function (data) {

@@ -33,6 +33,7 @@ app.add_url_rule('/logout', view_func=views.view_logout, methods=['GET'])
 app.add_url_rule('/annotate/<doc_id>/tension', view_func=views.view_annotate_tension, methods=['GET'])
 app.add_url_rule('/api/login', view_func=views.api_login, methods=['POST'])
 app.add_url_rule('/api/annotate/sent/<sent_id>/tension', view_func=views.api_annotate_tension, methods=['POST'])
+app.add_url_rule('/api/annotate/doc/<doc_id>/tension/stat', view_func=views.api_annotate_tension_stat, methods=['GET'])
 
 if __name__ == '__main__':
     FLASK_DEBUG = os.getenv('FLASK_DEBUG', True)
