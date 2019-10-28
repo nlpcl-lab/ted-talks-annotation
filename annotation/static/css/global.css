@@ -1,0 +1,44 @@
+.sweet-alert h2 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.lead.text-muted {
+    font-size: 16px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+    background-color: white;
+}
+
+#guideline-modal-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 25px;
+}
+
+.negative {
+    color: #ff8787 !important;
+}
+
+.neutral {
+    color: #495057 !important;
+}
+
+.positive {
+    color: #40c057 !important;
+}
+
+body {
+    margin-top: 70px;
+}
+
+.toast-success {
+    width: 145px !important;
+    font-size: 15px;
+}

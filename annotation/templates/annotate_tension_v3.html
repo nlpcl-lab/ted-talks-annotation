@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+{% include 'base/head.html' %}
+<style>
+    table td {
+        border-bottom: 1px solid #ced4da;
+        vertical-align: middle !important;
+    }
+
+    .table-primary, .table-primary > td {
+        background-color: #b8daff8c !important;
+    }
+
+    .sub-text {
+        font-size: 16px;
+        width: 716px;
+        word-break: break-all;
+    }
+
+    .sub-text .meta {
+        margin-top: 5px;
+    }
+
+    .label-radio {
+        font-size: 15px;
+    }
+
+    .gray {
+        color: #adb5bd
+    }
+
+    .video-box {
+        width: 600px;
+        position: fixed;
+        left: 20px;
+    }
+
+    .form-check-label i {
+        margin-right: 3px;
+    }
+
+    .play-button {
+        font-size: 17px;
+        cursor: pointer;
+        color: #007bff;
+    }
+
+    .progress-bar {
+        transition: width linear 0.3s;
+        background-color: #007bff;
+    }
+
+    .sub {
+        transition: opacity ease-in 0.3s;
+    }
+
+    .label-radio {
+        transition: opacity ease-in 0.3s;
+    }
+
+    .emoticon {
+        height: 130px;
+        margin-bottom: 10px;
+    }
+
+    .label-radio {
+        margin-top: 10px;
+        position: relative;
+    }
+
+    .down {
+        position: absolute;
+        left: 80px;
+    }
+
+    .similar {
+        position: absolute;
+        left: 220px;
+    }
+
+    .up {
+        position: absolute;
+        left: 370px;
+    }
+
+    .modal-body {
+        font-size: 14px;
+    }
+</style>
+<body>
+{% include 'base/navbar.html' %}
+
+<button type="button" id="guideline-modal-btn" class="btn btn-primary" data-toggle="modal"
+        data-target="#guideline-modal" style="font-size: 13px; z-index: 11;">
+    Guidelines
+</button>
+
+<div class="modal fade" id="guideline-modal" tabindex="-1" role="dialog" aria-labelledby="guideline-modal-title"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="guideline-modal-title">Guidelines</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3><strong>Task Definition</strong></h3>
+
+                <p>Your task is to watch a Ted Talks video and annotate every clip in the video containing the attribute
+                    presented in the following guidelines.</p>
+
+                <h3><strong>Annotation Guidelines</strong></h3>
+
+                <p>(Warning: All the information provided in the annotation guidelines should be treated confidentially
+                    until it is made publicly available as a research paper during the publication process.)</p>
+
+                <p>Please annotate the attribute with one of the three values (up, down, similar) that represents the
+                    change in tension for each clip in the Ted Talks video.</p>
+
+                <p><strong>+1: Tension-up</strong></p>
+
+                <p>Watch the video clip and select &ldquo;up&rdquo; if your feeling matches one of the pictures
+                    below.</p>
+
+                <p><img src="https://bowbowbow-storage.s3.ap-northeast-2.amazonaws.com/AMT/tension_up.png"
+                        style="height: 135px; width: 400px;"/></p>
+
+                <p style="margin-left:36.0pt;">Interesting: I&rsquo;m interested, want to learn more and know what&#39;s
+                    next&nbsp;</p>
+
+                <p style="margin-left:36.0pt;">Thinking: I&rsquo;m thinking about the content of the lecture (e.g., when
+                    the speaker asks a question).</p>
+
+                <p style="margin-left:36.0pt;">Surprised: I&#39;m surprised to see something I didn&#39;t expect.</p>
+
+                <p style="margin-left:36.0pt;">Annoyed: I&rsquo;m uncomfortable or feeling that the content is
+                    unpleasant or difficult to agree with.</p>
+
+                <p style="margin-left:36.0pt;">Confused: I&#39;m confused because it&#39;s different from what I
+                    originally knew or it is difficult to understand.</p>
+
+                <p style="margin-left:36.0pt;">&nbsp;</p>
+
+                <p><strong>-1: Tension-down</strong></p>
+
+                <p>Watch the video clip and select &ldquo;up&rdquo; if your feeling matches one of the pictures
+                    below.</p>
+
+                <p><img src="https://bowbowbow-storage.s3.ap-northeast-2.amazonaws.com/AMT/tension_down.png"
+                        style="height: 104px; width: 250px;"/></p>
+
+                <p style="margin-left:36.0pt;">Relieved: I am comfortable again, due to the removal of any previous
+                    anxiety or doubt.</p>
+
+                <p style="margin-left:36.0pt;">Funny: I find the speaker&#39;s joke(s) or content to be amusing.</p>
+
+                <p style="margin-left:36.0pt;">Boring: I am not interested in the repetition of similar and/or
+                    uninteresting content.</p>
+
+                <p>&nbsp;</p>
+
+                <p><strong>0: Tension-similar</strong></p>
+
+                <p>Watch the video clip and select &ldquo;similar&rdquo; when your status is neither tension-up nor
+                    -down.</p>
+
+                <p>If you are uncertain about your status, as shown in the third video clip of the picture below, select
+                    &ldquo;similar&rdquo;.</p>
+
+                <p><img src="https://bowbowbow-storage.s3.ap-northeast-2.amazonaws.com/AMT/tension_similar.png"
+                        style="opacity: 0.9; height: 150px; width: 450px;"/></p>
+
+                <p>&nbsp;</p>
+
+                <h3><strong>Annotation Procedure</strong></h3>
+
+                <p>1. Please visit our annotation website by clicking on the URL provided for the HIT on the AMT
+                    platform.</p>
+
+                <p>2. Please type in your Turker ID on the AMT platform in the text box and click &ldquo;sign in&rdquo;.<br/>
+                    (We will use it as an identifier to check the results of your work when there are any issues to
+                    address. Please take care to ensure that your ID is correct and matches the one given to you. If you
+                    enter this ID incorrectly, the issue handling process may become very complex.)</p>
+
+                <p style="text-align: center;"><img
+                        src="https://bowbowbow-storage.s3.ap-northeast-2.amazonaws.com/AMT/login.jpg"
+                        style="opacity: 0.9; height: 298px; width: 450px;"/></p>
+
+                <p>3. After you click &ldquo;Sign in&rdquo;, the website will allow you to annotate on changes in
+                    tension while playing a Ted Talk clip by clip. Click the play button labeled &quot;here&quot; as
+                    shown in the figure below when you wish to begin annotating a clip.</p>
+
+                <p style="text-align: center;"><img
+                        src="https://bowbowbow-storage.s3.ap-northeast-2.amazonaws.com/AMT/play_button_v2.jpg"
+                        style="text-align: center; opacity: 0.9; height: 377px; width: 650px;"/></p>
+
+                <p style="text-align: center;">&nbsp;</p>
+
+                <p>4. When a video clip is finished playing, an input is provided for you to select a change in tension
+                    along with subtitles. Choose a change in tension according to the guidelines. For visual
+                    reference, please see the outlined box in red in the figure below.</p>
+
+                <p style="text-align: center;"><img
+                        src="https://bowbowbow-storage.s3.ap-northeast-2.amazonaws.com/AMT/input_v2.jpg"
+                        style="opacity: 0.9; text-align: center; height: 375px; width: 650px;"/><span
+                        style="text-align: center;">​</span></p>
+
+                <p>5. After you finish the annotation of all the video clips in the given video (accessible via the
+                    given URL), click &ldquo;Export&rdquo; to convert the annotation results into our predefined format.
+                    (At this point, make sure that the progress is 100% in the upper right navigation bar.)</p>
+
+                <p style="text-align: center;"><img
+                        src="https://bowbowbow-storage.s3.ap-northeast-2.amazonaws.com/AMT/export_button_v2.jpg"
+                        style="opacity: 0.9; text-align: center; height: 377px; width: 650px;"/><span
+                        style="text-align: center;">​</span></p>
+
+                <p>6. Afterwards, please copy the formatted annotation result and paste it into the input box on the
+                    submission page on the AMT platform.</p>
+                <p>&nbsp;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="export-modal" tabindex="-1" role="dialog" aria-labelledby="export-modal-title"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="export-modal-title">Export</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <code>Copy and paste</code> the code below into the Amazon Mechanical Turk. <br/>
+                (Please make sure that the progress is 100% in the upper right navigation bar.)
+                <textarea id="exportModalBody"
+                          rows="5"
+                          readonly
+                          style="background-color: #f8f9fa;
+                     /*word-break:break-all;*/
+                     outline: none;
+                     padding: 15px;
+                     border-radius: 10px;
+                     border: none;
+                     height: 100px;
+                     width: 100%;
+                     overflow: auto;
+                     margin-top: 10px;">{{ g.user['username'] }}_{{ doc.id }}</textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onClick="copyToClipboard()">Copy to clipboard</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="video-box">
+    <div id="player"></div>
+    <div class="py-3">
+        <h4>Title: {{ doc.title }}</h4>
+        <p class="pt-2" style="font-size: 15px;">
+            Please annotate the change in tension based on the guidelines. <br/>
+            <br/>
+            <button type="button" id="export-modal-btn" class="btn btn-light btn-block" data-toggle="modal"
+                    data-target="#export-modal" style="font-size: 13px; background-color: #e6e6e6;">
+                Export
+            </button>
+            <br/>
+            Shortcut Tip: You can move the video clip you want to annotate by using the Up(↑) and Down(↓) keys on your
+            keyboard,
+            and
+            the part of the video corresponding to the selected clip is automatically played.<br/>
+            <br/>
+            The change in tension can be easily selected by using the 1(down), 2(similar), 3(up) keys on the
+            keyboard.<br/>
+            <br/>
+            {# Tip: The change in tension can be easily selected by using the Left(←) and Right(→) keys on the
+            keyboard.#}
+        </p>
+    </div>
+</div>
+
+
+<div class="container" style="margin-left: 625px; max-width: 700px;">
+    <table class="table" style="width: inherit">
+        <thead>
+        <tr>
+            <th scope="col">video clip / the change in tension</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sent in sents %}
+        <tr id="sub-{{ sent.index }}"
+            data-order="{{ sent.index }}"
+            data-id="{{ sent.id }}"
+            data-start="{{ sent.start_ts }}"
+            data-end="{{ sent.end_ts }}">
+            <td>
+                <div class="sub-text">
+                    <div style="display: flex; align-items: center; margin-bottom: 7px;">
+                        <div>
+                            <i class="fas fa-play play-button"></i>
+                        </div>
+                        <div class="progress"
+                             style="height: 3px; width: {{ (sent.end_ts-sent.start_ts)/30 }}px; margin-left: 14px; margin-top: -2px;">
+                            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 0%;"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="sub"
+                         style="opacity: {% if sent.label== '' %} 0 {% else %} 1 {% endif %};">{{ sent.index }}. {{
+                        sent.text }}<br/>
+                    </div>
+                    <div class="sub meta" style="opacity: {% if sent.label== '' %} 0 {% else %} 1 {% endif %};">
+                        {{ sent.meta_text }}
+                    </div>
+                </div>
+                <hr/>
+                <div>
+                    <img class="emoticon" src="{{ url_for('static', filename='img/emoticon/emoticons_v2.png') }}">
+                </div>
+                <div class="label-radio" style="opacity: {% if sent.label== '' %} 0 {% else %} 1 {% endif %};">
+                    You:
+                    <div class="form-check form-check-inline down">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="sent-{{ sent.index }}-label-radio"
+                               id="sent-{{ sent.index }}-label-radio-1"
+                               value="-1"
+                               {% if sent.label== -1 %} checked="checked" {% endif %}
+                        >
+                        <label class="form-check-label positive"
+                               for="sent-{{ sent.index }}-label-radio-1">
+                            <i style="transform: rotate(135deg)" class="fas fa-long-arrow-alt-up"></i>
+                            down
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline similar">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="sent-{{ sent.index }}-label-radio"
+                               id="sent-{{ sent.index }}-label-radio-2"
+                               value="0"
+                               {% if sent.label== 0 %} checked="checked" {% endif %}
+                        >
+                        <label class="form-check-label neutral"
+                               for="sent-{{ sent.index }}-label-radio-2">
+                            <i style="transform: rotate(90deg)" class="fas fa-long-arrow-alt-up"></i>
+                            similar
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline up">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="sent-{{ sent.index }}-label-radio"
+                               id="sent-{{ sent.index }}-label-radio-3"
+                               value="1"
+                               {% if sent.label== 1 %} checked="checked" {% endif %}
+                        >
+                        <label class="form-check-label negative"
+                               for="sent-{{ sent.index }}-label-radio-3">
+                            <i style="transform: rotate(45deg)" class="fas fa-long-arrow-alt-up"></i>
+                            up
+                        </label>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<input type="hidden" id="sent_total" value="{{ doc.sent_total }}"/>
+<input type="hidden" id="doc_id" value="{{ doc.id }}"/>
+
+{% include 'base/script.html' %}
+<script>
+  let control = {
+    focus_sent_index: 1,
+    focus_label: 0,
+    focus_started_at: new Date().getTime(),
+    input_viewed_at: new Date().getTime(),
+    focus_end_time: 10000000,
+    player: null,
+    is_playing: false,
+  };
+
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  function onYouTubeIframeAPIReady() {
+    control.player = new YT.Player('player', {
+      height: '350',
+      width: '600',
+      videoId: "{{doc.source.split('=')[1]}}",
+      playerVars: {controls: 0, rel: 0},
+      events: {
+        onReady: onPlayerReady,
+        onStateChange: onPlayerStateChange
+      },
+    });
+  }
+
+  function onPlayerReady(event) {
+    // event.target.playVideo();
+    setInterval(onTimeUpdate, 200);
+    {
+      change_focus_updown();
+    }
+  }
+
+  function onTimeUpdate() {
+    let currentTime = control.player.getCurrentTime();
+
+    let target_tr = $('tbody > tr:nth-child(' + control.focus_sent_index + ')').first();
+
+    const sent_start_time = Number(target_tr.attr('data-start')) / 1000;
+    const sent_end_time = Number(target_tr.attr('data-end')) / 1000;
+
+    let ratio = Math.floor((currentTime - sent_start_time) / (sent_end_time - sent_start_time) * 100);
+    ratio = Math.min(100, ratio);
+    target_tr.find('.progress-bar').css('width', ratio + '%');
+
+    if (currentTime >= control.focus_end_time / 1000 - 0.2 && control.is_playing) {
+      control.player.pauseVideo();
+      control.input_viewed_at = new Date().getTime();
+      target_tr.find('.progress-bar').css('width', '100%');
+      target_tr.find('.label-radio').css('opacity', 1);
+    }
+  }
+
+  function onPlayerStateChange(event) {
+    if (event.data === YT.PlayerState.PLAYING) {
+      control.is_playing = true;
+    } else {
+      control.is_playing = false;
+    }
+  }
+
+
+  function change_focus_updown() {
+    control.focus_started_at = new Date().getTime();
+    $('tbody > tr').removeClass('table-primary');
+
+    let target_tr = $('tbody > tr:nth-child(' + control.focus_sent_index + ')').first();
+    // 비디오 정지 시간 지정
+    const sent_start_time = Number(target_tr.attr('data-start'));
+    const sent_end_time = Number(target_tr.attr('data-end'));
+
+    target_tr.find('.sub').css('opacity', 1);
+
+    let currentTime = control.player.getCurrentTime();
+    // 비디오 위치가 현재 주석 문장 앞이거나 이미 지나쳤을 때 조정
+    if (currentTime < sent_start_time / 1000 - 3) {
+      control.player.seekTo(sent_start_time / 1000 - 3);
+    }
+    if (currentTime > sent_start_time / 1000 + 0.5) {
+      control.player.seekTo(sent_start_time / 1000 - 1);
+    }
+    control.focus_end_time = sent_end_time;
+    control.player.playVideo();
+
+    control.focus_sent_index = target_tr.attr('id').split('-')[1];
+    target_tr.addClass('table-primary');
+
+    let scroll_timing = 700;
+
+    $('html, body').animate({
+      scrollTop: target_tr.offset().top - 240,
+    }, scroll_timing);
+
+    // 체크된 라벨이 없을 때 취소
+    let checked_tension_label = $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"]:checked').val();
+    if (typeof checked_tension_label === 'undefined') {
+      return;
+    }
+
+    control.focus_label = Number(checked_tension_label);
+    let sent_id = $('tbody > tr:nth-child(' + control.focus_sent_index + ')').attr('data-id');
+    update_label(sent_id, control.focus_label);
+  }
+
+
+  function update_label(sent_id, label) {
+    $.ajax({
+      url: '/api/annotate/sent/' + sent_id + '/tension_v3',
+      dataType: 'json',
+      contentType: 'application/json',
+      type: 'POST',
+      data: JSON.stringify({
+        label: label,
+        focus_started_at: control.focus_started_at,
+        input_viewed_at: control.input_viewed_at,
+        local_updated_at: new Date().getTime(),
+      }),
+    }).done(function (data) {
+      let label_total = Number(data['label_total']);
+      let sent_total = Number(data['sent_total']);
+
+      if (sent_total === 0) sent_total = 1;
+      let ratio = (label_total / sent_total * 100).toFixed(1);
+
+      $('#msg').html('Progress: ' + label_total + '/' + sent_total + '(' + ratio + '%)');
+    }).fail(function () {
+      console.log('fail to save at ', control.focus_sent_index);
+      $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"][value=' + label + ']').prop('checked', false);
+      swal({
+        title: '',
+        text: 'Failed to delete annotation, please check network.',
+        type: 'error',
+      });
+    })
+  }
+
+  function get_annotation_stat() {
+    let doc_id = $('#doc_id').val();
+    $.ajax({
+      url: '/api/annotate/doc/' + doc_id + '/tension_v3/stat',
+      dataType: 'json',
+      type: 'GET',
+    }).done(function (data) {
+      let label_total = Number(data['label_total']);
+      let sent_total = Number(data['sent_total']);
+
+      if (sent_total === 0) sent_total = 1;
+      let ratio = (label_total / sent_total * 100).toFixed(1);
+
+      $('#msg').html('Progress: ' + label_total + '/' + sent_total + '(' + ratio + '%)');
+    })
+  }
+
+  function listen_radio() {
+    $('input:radio').change(function () {
+      let target_tr = $(this).parents('tr');
+      let sent_id = target_tr.attr('data-id');
+      let label = Number($(this).val());
+      update_label(sent_id, label);
+    })
+  }
+
+  function listen_play_button() {
+    $('.play-button').click(function () {
+      let target_tr = $(this).parents('tr');
+      let sent_index = target_tr.attr('data-order');
+      control.focus_sent_index = sent_index;
+      change_focus_updown();
+    })
+  }
+
+  function listen_arrow_key() {
+    $(document).keydown(function (e) {
+      let target_tr = $('tbody > tr:nth-child(' + control.focus_sent_index + ')');
+      let sent_id = target_tr.attr('data-id');
+
+      switch (e.which) {
+        case 49: // 1
+          if (control.is_playing) return; // 실행 중일 땐 단축키 사용 막기
+          control.focus_label = -1;
+          $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"][value=' + control.focus_label + ']').prop('checked', true);
+          update_label(sent_id, control.focus_label);
+          break;
+        case 50: // 2
+          if (control.is_playing) return; // 실행 중일 땐 단축키 사용 막기
+          control.focus_label = 0;
+          $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"][value=' + control.focus_label + ']').prop('checked', true);
+          update_label(sent_id, control.focus_label);
+          break;
+        case 51: // 3
+          if (control.is_playing) return; // 실행 중일 땐 단축키 사용 막기
+          control.focus_label = 1;
+          $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"][value=' + control.focus_label + ']').prop('checked', true);
+          update_label(sent_id, control.focus_label);
+          break;
+        case 38: // up
+          control.focus_sent_index--;
+          if (control.focus_sent_index <= 0) control.focus_sent_index = 1;
+          change_focus_updown();
+          break;
+        case 40: // down
+          control.focus_sent_index++;
+          if (Number($('#sent_total').val()) < control.focus_sent_index) control.focus_sent_index--;
+          change_focus_updown();
+          break;
+        default:
+          return;
+      }
+      e.preventDefault();
+    });
+  }
+
+  function copyToClipboard() {
+    var copyText = document.getElementById("exportModalBody");
+    copyText.select();
+    document.execCommand("copy");
+    toastr.success("Copied");
+  }
+
+  $(document).ready(function () {
+    listen_arrow_key();
+    listen_radio();
+    listen_play_button();
+    get_annotation_stat();
+  });
+</script>
+</body>
+</html>

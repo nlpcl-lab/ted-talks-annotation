@@ -1,0 +1,12 @@
+venv/
+
+.idea/
+
+/data/
+/logs/
+
+.ipynb_checkpoints/
+
+config.py
+
+
