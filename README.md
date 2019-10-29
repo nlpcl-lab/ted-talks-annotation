@@ -19,7 +19,7 @@ An annotation tool used in the paper to annotate the tension development.
     
 2. Install python requirements: `pip install -r requirements.txt`
 
-3. Download TED talks videos on the data/video_list: `python downloader.py`
+3. Download TED talks videos on the data/video_list.csv: `python downloader.py`
 
 ### Usage
 
