@@ -30,7 +30,7 @@ An annotation tool used in the paper to annotate the tension development.
 
 3. Export the annotation data: `export PYTHONPATH=.; python annotation/dbscript.py --run=export_data`
     - The exported data path: data/output/tension.json
-    - Example
+    - Example:
     ```bash
     {
         "doc_id": "5db7ac1c88e6da63a07a9c2e",
