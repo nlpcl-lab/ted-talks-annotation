@@ -565,19 +565,19 @@
 
       switch (e.which) {
         case 49: // 1
-          if (control.is_playing) return; // 실행 중일 땐 단축키 사용 막기
+          if (control.is_playing) return; // Block the use of shortcuts when playing
           control.focus_label = -1;
           $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"][value=' + control.focus_label + ']').prop('checked', true);
           update_label(sent_id, control.focus_label);
           break;
         case 50: // 2
-          if (control.is_playing) return; // 실행 중일 땐 단축키 사용 막기
+          if (control.is_playing) return;
           control.focus_label = 0;
           $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"][value=' + control.focus_label + ']').prop('checked', true);
           update_label(sent_id, control.focus_label);
           break;
         case 51: // 3
-          if (control.is_playing) return; // 실행 중일 땐 단축키 사용 막기
+          if (control.is_playing) return;
           control.focus_label = 1;
           $('input:radio[name="sent-' + control.focus_sent_index + '-label-radio"][value=' + control.focus_label + ']').prop('checked', true);
           update_label(sent_id, control.focus_label);
