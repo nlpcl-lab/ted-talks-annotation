@@ -1,6 +1,6 @@
 # ted-talks-annotation
 
-Code and data for a paper "Computer Assisted Annotation of Tension Development in TED Talks through Crowdsourcing" 
+This is a code for EMNLP-IJCNLP 2019 AnnoNLP Workshop Paper: "[Computer Assisted Annotation of Tension Development in TED Talks through Crowdsourcing](https://www.aclweb.org/anthology/D19-5906/)"
 
 ## Annotation Tool
 
