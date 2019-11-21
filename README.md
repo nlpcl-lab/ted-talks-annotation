@@ -26,6 +26,7 @@ An annotation tool used in the paper to annotate the tension development.
 1. Run the web-based annotation tool: `export PYTHONPATH=.; python annotation/app.py`
 
 2. Annotate! 😵
+    - Click one of the given options on each video clips. The selected value will be saved to DB automatically with the sentential information.
     - We provided the annotators with [this guideline document](https://github.com/nlpcl-lab/ted-talks-annotation/blob/master/guideline_for_annotators.pdf) when using [Amazon Mechanical Turk](https://www.mturk.com).
 
 3. Export the annotation data: `export PYTHONPATH=.; python annotation/dbscript.py --run=export_data`
